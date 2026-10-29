@@ -13,7 +13,6 @@ config_version=5
 config/name="aboba"
 run/main_scene="uid://bad5peyixcgrb"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
 
 [display]
 
