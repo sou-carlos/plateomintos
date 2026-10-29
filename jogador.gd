@@ -50,6 +50,7 @@ func inicio(pos):
 	show()
 	$CollisionShape2D.disabled = false
 
+#adicionando comentario
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("ataque basico"):
 		ataque()
