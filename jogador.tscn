@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://jyjp3qhjrqk6"]
+
+[ext_resource type="Script" uid="uid://dkjdeuapm5p0y" path="res://jogador.gd" id="1_j3kwt"]
+[ext_resource type="Texture2D" uid="uid://s5bj1qn5k8a0" path="res://art/3 Sem Título_20261005131957.png" id="2_4obgb"]
+[ext_resource type="Texture2D" uid="uid://csp8k4e1xycyj" path="res://art/articulacao.png" id="2_j3kwt"]
+[ext_resource type="Texture2D" uid="uid://0bj4av2mqr7l" path="res://art/3 Sem Título_20261005133242.png" id="3_j3kwt"]
+[ext_resource type="Texture2D" uid="uid://c6p0o00r2vayt" path="res://art/4 Sem Título_20261001012642.png" id="4_4obgb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l502e"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_4obgb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j3kwt")
+}],
+"loop": 0,
+"name": &"ataque basico",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4obgb")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l502e"]
+radius = 30.0
+height = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l2vh"]
+size = Vector2(80, 87)
+
+[node name="Jogador" type="Area2D" unique_id=190093235]
+script = ExtResource("1_j3kwt")
+classe = 1
+textura_articulacao = ExtResource("2_j3kwt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=923466116]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_l502e")
+animation = &"ataque basico"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=831796450]
+position = Vector2(-15, 0)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_l502e")
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=2020005652]
+position = Vector2(90, -17)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=479596128]
+position = Vector2(-46, 17.5)
+shape = SubResource("RectangleShape2D_3l2vh")
+
+[node name="Articulacoes" type="Node2D" parent="." unique_id=1750422883]
+position = Vector2(90, -17)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=376097568]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

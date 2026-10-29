@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bad5peyixcgrb"]
+
+[ext_resource type="PackedScene" uid="uid://jyjp3qhjrqk6" path="res://jogador.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cgsjlmg52kkq1" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://dqrslw64cgvir" path="res://inimigo_spawn_location.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://ephgv8686uwd" path="res://minino_mau_criado.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bv00la4mcaro8" path="res://hud.tscn" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://v1fy5b7lqi38" path="res://art/House In a Forest Loop.ogg" id="6_272bh"]
+[ext_resource type="AudioStream" uid="uid://d3qp1tmg1jlfp" path="res://art/gameover.wav" id="7_5vw27"]
+[ext_resource type="Texture2D" uid="uid://fu8af3b17xqf" path="res://art/Textures/light_03.png" id="8_5vw27"]
+
+[sub_resource type="Curve2D" id="Curve2D_h2yge"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -33.753788, -31.219446, 0, 0, 0, 0, 485, -14, 0, 0, 0, 0, 491, 704, 0, 0, 0, 0, -24, 714, 0, 0, 0, 0, -24, -9)
+}
+point_count = 5
+
+[node name="Main" type="Node" unique_id=256775056]
+script = ExtResource("1_h2yge")
+mob_scene = ExtResource("2_h2yge")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=681954993]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.4392157, 0.49019608, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1369787852]
+position = Vector2(218, 356)
+amount = 50
+texture = ExtResource("8_5vw27")
+lifetime = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(300, 500)
+direction = Vector2(999, 999)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 250.0
+angular_velocity_min = 10.0
+angular_velocity_max = 50.0
+scale_amount_min = 0.0
+scale_amount_max = 0.25
+color = Color(0.20308754, 0.4496268, 0.27990216, 1)
+
+[node name="Jogador" parent="." unique_id=190093235 instance=ExtResource("1_0xm2m")]
+
+[node name="InimigoTimer" type="Timer" parent="." unique_id=945051976]
+wait_time = 1.5
+
+[node name="PontosTimer" type="Timer" parent="." unique_id=66046434]
+
+[node name="InicioTimer" type="Timer" parent="." unique_id=1626362177]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="." unique_id=384573511]
+position = Vector2(240, 450)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=848009102]
+position = Vector2(0.6058235, 0.6346159)
+scale = Vector2(1.0252427, 1.0453297)
+curve = SubResource("Curve2D_h2yge")
+
+[node name="InimigoSpawnLocation" type="PathFollow2D" parent="Path2D" unique_id=469998731]
+position = Vector2(-33.753788, -31.219446)
+rotation = 0.033181686
+scale = Vector2(1, 0.99999994)
+script = ExtResource("2_0xm2m")
+
+[node name="HUD" parent="." unique_id=502855010 instance=ExtResource("5_lquwl")]
+
+[node name="Musica" type="AudioStreamPlayer" parent="." unique_id=6594617]
+stream = ExtResource("6_272bh")
+volume_db = -24.0
+autoplay = true
+
+[node name="SomF" type="AudioStreamPlayer" parent="." unique_id=962320245]
+stream = ExtResource("7_5vw27")
+
+[connection signal="hit" from="Jogador" to="." method="_on_jogador_hit"]
+[connection signal="timeout" from="InimigoTimer" to="." method="_on_inimigo_timer_timeout"]
+[connection signal="timeout" from="PontosTimer" to="." method="_on_pontos_timer_timeout"]
+[connection signal="timeout" from="InicioTimer" to="." method="_on_inicio_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
