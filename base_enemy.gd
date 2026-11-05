@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 	var direcao := global_position.direction_to(_player_ref.global_position)
 	linear_velocity = direcao * speed
 	rotation = direcao.angle()
-
+	#teste git
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	life -= 1
