@@ -35,7 +35,7 @@ height = 64.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3l2vh"]
 size = Vector2(80, 87)
 
-[node name="Jogador" type="Area2D" unique_id=190093235]
+[node name="Jogador" type="Area2D" unique_id=190093235 groups=["jogador"]]
 script = ExtResource("1_j3kwt")
 classe = 1
 textura_articulacao = ExtResource("2_j3kwt")

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://urxv1s6gwn3p"]
+
+[ext_resource type="PackedScene" uid="uid://yrjhfkcxjopg" path="res://base_enemy.tscn" id="1_s7yb4"]
+[ext_resource type="Texture2D" uid="uid://sdjh3dicsgqq" path="res://art/enemyFlyingAlt_1.png" id="2_b6tqy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b6tqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b6tqy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vaaym"]
+size = Vector2(78.5, 93.5)
+
+[node name="Enraivado" unique_id=1020826806 instance=ExtResource("1_s7yb4")]
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1223789421]
+sprite_frames = SubResource("SpriteFrames_b6tqy")
+
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(333518409) index="0" unique_id=1169992585]
+position = Vector2(15.75, -0.75)
+shape = SubResource("RectangleShape2D_vaaym")

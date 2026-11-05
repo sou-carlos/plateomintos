@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Jogador
+
 enum Classe { MELEE, RANGE }
 
 @export var speed = 400 
@@ -28,6 +30,7 @@ var rastro: Array[Vector2] = []
 
 
 func _ready() -> void:
+	add_to_group("jogador")
 	# O 'match' verifica o valor atual da variável 'classe'
 	match classe:
 		Classe.MELEE:

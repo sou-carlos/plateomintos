@@ -31,7 +31,7 @@ func novo_jogo():
 
 
 func _on_inicio_timer_timeout() -> void:
-	$InimigoTimer.start()
+	#$InimigoTimer.start()
 	$PontosTimer.start()
 
 

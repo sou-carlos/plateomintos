@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://yrjhfkcxjopg"]
+
+[ext_resource type="Script" uid="uid://bxfvd6svebvc7" path="res://base_enemy.gd" id="1_vaaym"]
+
+[node name="BaseEnemy" type="RigidBody2D" unique_id=1020826806]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_vaaym")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1223789421]
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=333518409]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1169992585]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://v1fy5b7lqi38" path="res://art/House In a Forest Loop.ogg" id="6_272bh"]
 [ext_resource type="AudioStream" uid="uid://d3qp1tmg1jlfp" path="res://art/gameover.wav" id="7_5vw27"]
 [ext_resource type="Texture2D" uid="uid://fu8af3b17xqf" path="res://art/Textures/light_03.png" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://urxv1s6gwn3p" path="res://enraivado.tscn" id="9_kek77"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
@@ -46,6 +47,9 @@ scale_amount_max = 0.25
 color = Color(0.20308754, 0.4496268, 0.27990216, 1)
 
 [node name="Jogador" parent="." unique_id=190093235 instance=ExtResource("1_0xm2m")]
+position = Vector2(624, 356)
+classe = 0
+dash_speed = 2000.0
 
 [node name="InimigoTimer" type="Timer" parent="." unique_id=945051976]
 wait_time = 1.5
@@ -79,6 +83,9 @@ autoplay = true
 
 [node name="SomF" type="AudioStreamPlayer" parent="." unique_id=962320245]
 stream = ExtResource("7_5vw27")
+
+[node name="Enraivado" parent="." unique_id=1020826806 instance=ExtResource("9_kek77")]
+position = Vector2(151, 223)
 
 [connection signal="hit" from="Jogador" to="." method="_on_jogador_hit"]
 [connection signal="timeout" from="InimigoTimer" to="." method="_on_inimigo_timer_timeout"]

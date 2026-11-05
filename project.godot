@@ -22,6 +22,10 @@ window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://dfnkw2k5cw85w"
 mouse_cursor/custom_image_hotspot=Vector2(25, 25)
 
+[global_group]
+
+jogador=""
+
 [input]
 
 mvDireita={
