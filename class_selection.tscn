@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dep74jktox537"]
+
+[ext_resource type="Script" uid="uid://p1kvcd2leega" path="res://class_selection.gd" id="1_5bvf1"]
+[ext_resource type="Texture2D" uid="uid://k5el1115xeii" path="res://art/2 Sem Título_20261005135141.png" id="1_jf164"]
+[ext_resource type="Texture2D" uid="uid://t08ooonpl4r" path="res://art/2 Sem Título_20261005134300.png" id="2_5bvf1"]
+
+[node name="ClassSelection" type="CanvasLayer" unique_id=504453208]
+script = ExtResource("1_5bvf1")
+
+[node name="Control" type="Control" parent="." unique_id=498079468]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RangeButton" type="Button" parent="Control" unique_id=561568591]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 146.0
+offset_right = 2159.0
+offset_bottom = 2154.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("1_jf164")
+
+[node name="MeleeButton" type="Button" parent="Control" unique_id=2143463469]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 145.0
+offset_right = 2728.0
+offset_bottom = 2153.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("2_5bvf1")
+
+[node name="Label" type="Label" parent="Control" unique_id=1001258712]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -364.0
+offset_right = 364.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "ESCOLHA A SUA CLASSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RangeLabel" type="Label" parent="Control" unique_id=1083322558]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 565.0
+offset_right = 435.0
+offset_bottom = 674.0
+theme_override_font_sizes/font_size = 38
+text = "Atirador
+"
+
+[node name="MeleeLabel" type="Label" parent="Control" unique_id=2058884996]
+layout_mode = 0
+offset_left = 802.0
+offset_top = 565.0
+offset_right = 1065.0
+offset_bottom = 674.0
+theme_override_font_sizes/font_size = 38
+text = "Corpo a Corpo
+"
+
+[connection signal="pressed" from="Control/RangeButton" to="." method="_on_range_button_pressed"]
+[connection signal="pressed" from="Control/MeleeButton" to="." method="_on_melee_button_pressed"]

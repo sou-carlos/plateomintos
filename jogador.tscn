@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://s5bj1qn5k8a0" path="res://art/3 Sem Título_20261005131957.png" id="2_4obgb"]
 [ext_resource type="Texture2D" uid="uid://csp8k4e1xycyj" path="res://art/articulacao.png" id="2_j3kwt"]
 [ext_resource type="Texture2D" uid="uid://0bj4av2mqr7l" path="res://art/3 Sem Título_20261005133242.png" id="3_j3kwt"]
+[ext_resource type="PackedScene" uid="uid://72oii4kmvofh" path="res://projetil.tscn" id="3_xswob"]
 [ext_resource type="Texture2D" uid="uid://c6p0o00r2vayt" path="res://art/4 Sem Título_20261001012642.png" id="4_4obgb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l502e"]
@@ -35,10 +36,14 @@ height = 64.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3l2vh"]
 size = Vector2(80, 87)
 
-[node name="Jogador" type="Area2D" unique_id=190093235 groups=["jogador"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xswob"]
+radius = 29.068884
+
+[node name="Jogador" type="CharacterBody2D" unique_id=539909282 groups=["jogador"]]
+position = Vector2(0, -1)
 script = ExtResource("1_j3kwt")
-classe = 1
 textura_articulacao = ExtResource("2_j3kwt")
+projetil_scene = ExtResource("3_xswob")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=923466116]
 z_index = 1
@@ -65,7 +70,15 @@ shape = SubResource("RectangleShape2D_3l2vh")
 position = Vector2(90, -17)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=376097568]
+zoom = Vector2(0.9, 0.9)
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=856558547]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1136245642]
+z_index = 1
+position = Vector2(-16, -1)
+shape = SubResource("CircleShape2D_xswob")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

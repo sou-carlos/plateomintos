@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cj5lbtr7v5gq7"]
+
+[ext_resource type="Script" uid="uid://b5tgnnx0l0mqn" path="res://borda.gd" id="1_56xy0"]
+
+[node name="Borda" type="Node2D" unique_id=998065091]
+script = ExtResource("1_56xy0")
+raio = 1000.0
+quantidade_pontos = 128
+
+[node name="Corpo" type="StaticBody2D" parent="." unique_id=872933092]
