@@ -2,17 +2,8 @@ extends Node
 @export var mob_scene: PackedScene
 var score
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-
 func _on_jogador_hit() -> void:
 	game_over()
-
 
 func game_over():
 	$PontosTimer.stop()
@@ -31,7 +22,7 @@ func novo_jogo():
 
 
 func _on_inicio_timer_timeout() -> void:
-	#$InimigoTimer.start()
+	$InimigoTimer.start()
 	$PontosTimer.start()
 
 
@@ -41,7 +32,7 @@ func _on_pontos_timer_timeout() -> void:
 
 
 func _on_inimigo_timer_timeout() -> void:
-	var inimigo=mob_scene.instantiate()
+	var inimigo= mob_scene.instantiate()
 	var inimigo_spawn_location=$Path2D/InimigoSpawnLocation
 	inimigo_spawn_location.progress_ratio=randf()
 	inimigo.position=inimigo_spawn_location.position

@@ -63,7 +63,8 @@ animation = &"voar"
 scale = Vector2(0.5, 0.5)
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1730701687]
-collision_mask = 2
+collision_layer = 9
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1312097936]
 position = Vector2(6, -1)

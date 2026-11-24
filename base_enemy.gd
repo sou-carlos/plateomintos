@@ -3,7 +3,7 @@ extends RigidBody2D
 
 @export var speed: float = 150.0
 
-var life = 0
+var life = 5
 var dano_base = 10
 var _player_ref: Jogador
 
@@ -22,9 +22,17 @@ func _physics_process(_delta: float) -> void:
 	var direcao := global_position.direction_to(_player_ref.global_position)
 	linear_velocity = direcao * speed
 	rotation = direcao.angle()
-
+	#teste git
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	life -= 10
+	life -= 1
+	print("acertado")
+	if life <= 0:
+		queue_free()
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	life -= 1
+	print("acertado")
 	if life <= 0:
 		queue_free()
