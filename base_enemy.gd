@@ -25,6 +25,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	life -= 1
+	life -= 10
 	if life <= 0:
 		queue_free()

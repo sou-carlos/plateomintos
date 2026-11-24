@@ -1,15 +1,17 @@
-extends Area2D
+extends CharacterBody2D
 
 class_name Jogador
 
-enum Classe { MELEE, RANGE }
+
 
 @export var speed = 400 
-@export var classe: Classe = Classe.MELEE
+
 @export var dash_speed: float = 1000.0
 @export var dash_duration: float = 0.12
 @export var textura_articulacao: Texture2D
 @export var distancia_articulacao: float = 40.0
+@export var projetil_scene:PackedScene
+@export var velocidade_projetil:float= 700
 
 @onready var articulacoes_container: Node2D = $Articulacoes
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -32,11 +34,10 @@ var rastro: Array[Vector2] = []
 func _ready() -> void:
 	add_to_group("jogador")
 	# O 'match' verifica o valor atual da variável 'classe'
-	match classe:
-		Classe.MELEE:
+	if PlayerConf.classe==PlayerConf.Classe.MELEE:
 			vida = 5
 			print("Guerreiro Escolhido")
-		Classe.RANGE:
+	if PlayerConf.classe==PlayerConf.Classe.RANGE:
 			vida = 3 
 			print("Atirador Escolhido")
 			
@@ -62,8 +63,6 @@ func ataque():
 	if atacando:
 		return
 	
-	atacando = true
-	
 	dash_direction = global_position.direction_to(
 		get_global_mouse_position()
 	)
@@ -72,14 +71,28 @@ func ataque():
 		dash_direction = Vector2.RIGHT.rotated(global_rotation)
 		
 	look_at(global_position + dash_direction)
-	dash_time_left = dash_duration
-	
-	animated_sprite_2d.play("ataque basico")
-	attack_hitbox.monitorable = true
+	if PlayerConf.classe==PlayerConf.Classe.RANGE:
+		ataque_range()
+	else :
+		atacando=true
+		dash_time_left = dash_duration
+		animated_sprite_2d.play("ataque basico")
+		attack_hitbox.monitorable = true
+
+func ataque_range ()->void:
+	if projetil_scene == null:
+		push_warning("não atirou o normal/pebinha")
+		return
+		
+	var projetil=projetil_scene.instantiate()
+	projetil.global_position=global_position
+	projetil.direcao=dash_direction
+	projetil.velocidade=velocidade_projetil
+	get_tree().current_scene.add_child(projetil)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 	
 	if dash_time_left >  0.0:
 		var dash_step: float = minf(delta, dash_time_left)
@@ -103,7 +116,7 @@ func _physics_process(delta: float) -> void:
 		if velocity.length()>0:
 			velocity = velocity.normalized() * speed
 
-	position += velocity * delta
+	move_and_slide()
 	#position = position.clamp(Vector2.ZERO,tamanhoTela)
 	atualizar_articulacoes()
 

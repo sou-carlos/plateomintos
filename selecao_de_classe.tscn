@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dhnvdbgo4wq8c"]
+
+[ext_resource type="Texture2D" uid="uid://t08ooonpl4r" path="res://art/2 Sem Título_20261005134300.png" id="1_c841s"]
+[ext_resource type="Script" uid="uid://dgll72tpe64wt" path="res://selecao_de_classe.gd" id="1_dkvii"]
+[ext_resource type="Texture2D" uid="uid://k5el1115xeii" path="res://art/2 Sem Título_20261005135141.png" id="2_dkvii"]
+
+[sub_resource type="Theme" id="Theme_thumt"]
+
+[node name="Selecao de classe" type="CanvasLayer" unique_id=876020439]
+script = ExtResource("1_dkvii")
+
+[node name="Corpo_a_corpo" type="Button" parent="." unique_id=456432145]
+custom_maximum_size = Vector2(1000, 1500)
+offset_left = 173.0
+offset_top = 157.0
+offset_right = 1173.0
+offset_bottom = 1657.0
+scale = Vector2(0.25, 0.25)
+theme = SubResource("Theme_thumt")
+icon = ExtResource("1_c841s")
+flat = true
+icon_alignment = 1
+
+[node name="Longa_distancea" type="Button" parent="." unique_id=1689970804]
+custom_maximum_size = Vector2(1000, 1500)
+offset_left = 800.0
+offset_top = 157.0
+offset_right = 1800.0
+offset_bottom = 1657.0
+scale = Vector2(0.25, 0.25)
+theme = SubResource("Theme_thumt")
+icon = ExtResource("2_dkvii")
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="Corpo_a_corpo" to="." method="_on_corpo_a_corpo_pressed"]
+[connection signal="pressed" from="Longa_distancea" to="." method="_on_longa_distancea_pressed"]
