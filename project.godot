@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="aboba"
-run/main_scene="uid://bad5peyixcgrb"
+run/main_scene="uid://dep74jktox537"
 config/features=PackedStringArray("4.7", "Mobile")
+
+[autoload]
+
+PlayerConf="*uid://cvej5vfhbc8sl"
 
 [display]
 
@@ -57,6 +61,8 @@ mvBaixo={
 [layer_names]
 
 2d_physics/layer_2="Ataque do player"
+2d_physics/layer_3="Projeteis"
+2d_physics/layer_4="Inimigos"
 
 [physics]
 

@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://d3qp1tmg1jlfp" path="res://art/gameover.wav" id="7_5vw27"]
 [ext_resource type="Texture2D" uid="uid://fu8af3b17xqf" path="res://art/Textures/light_03.png" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://urxv1s6gwn3p" path="res://enraivado.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://cj5lbtr7v5gq7" path="res://borda.tscn" id="10_4c57u"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
@@ -21,6 +22,7 @@ script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_h2yge")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=681954993]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,9 +34,11 @@ color = Color(0, 0.4392157, 0.49019608, 1)
 position = Vector2(218, 356)
 amount = 50
 texture = ExtResource("8_5vw27")
-lifetime = 5.0
-emission_shape = 3
-emission_rect_extents = Vector2(300, 500)
+lifetime = 8.0
+preprocess = 6.0
+explosiveness = 0.27
+emission_shape = 1
+emission_sphere_radius = 128.0
 direction = Vector2(999, 999)
 spread = 180.0
 gravity = Vector2(0, 0)
@@ -47,8 +51,7 @@ scale_amount_max = 0.25
 color = Color(0.20308754, 0.4496268, 0.27990216, 1)
 
 [node name="Jogador" parent="." unique_id=190093235 instance=ExtResource("1_0xm2m")]
-position = Vector2(624, 356)
-classe = 0
+position = Vector2(453, 356)
 dash_speed = 2000.0
 
 [node name="InimigoTimer" type="Timer" parent="." unique_id=945051976]
@@ -61,7 +64,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="." unique_id=384573511]
-position = Vector2(240, 450)
 
 [node name="Path2D" type="Path2D" parent="." unique_id=848009102]
 position = Vector2(0.6058235, 0.6346159)
@@ -86,6 +88,10 @@ stream = ExtResource("7_5vw27")
 
 [node name="Enraivado" parent="." unique_id=1020826806 instance=ExtResource("9_kek77")]
 position = Vector2(151, 223)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Borda" parent="." unique_id=998065091 instance=ExtResource("10_4c57u")]
 
 [connection signal="hit" from="Jogador" to="." method="_on_jogador_hit"]
 [connection signal="timeout" from="InimigoTimer" to="." method="_on_inimigo_timer_timeout"]

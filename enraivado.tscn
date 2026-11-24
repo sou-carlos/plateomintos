@@ -23,10 +23,17 @@ animations = [{
 size = Vector2(78.5, 93.5)
 
 [node name="Enraivado" unique_id=1020826806 instance=ExtResource("1_s7yb4")]
+position = Vector2(7, 0)
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1223789421]
 sprite_frames = SubResource("SpriteFrames_b6tqy")
 
-[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(333518409) index="0" unique_id=1169992585]
+[node name="Hitbox" parent="." index="1" unique_id=333518409]
+collision_layer = 9
+collision_mask = 6
+
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=1169992585]
 position = Vector2(15.75, -0.75)
 shape = SubResource("RectangleShape2D_vaaym")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
